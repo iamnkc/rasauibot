@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Botfront - Web Chat</title>
+</head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<body style="background: rgb(255, 255, 255);">
+  <!--<a href="#" onclick="WebChat.send('/prescription')">Send chitchat.greet without text</a>
+  <br />
+  <a href="#" onclick="WebChat.send('/chitchat.greet', 'salut')">Send chitchat.greet with text</a>
+  <h1 class="test"> test</h1>-->
+<script src="index.js"  type="text/javascript"></script>
+<div id="webchat"></div>
+<script>
+  WebChat.default.init({
+    selector: "#webchat",
+    //initPayload: "/intro_registered_accounts",
+    socketUrl: "http://localhost:5005/",
+    //: "/tooltip_registered_accounts",
+    tooltipDelay: 40000,
+    socketPath: "/socket.io/",
+    customData: {
+      language: 'fr'
+    },
+    // subtitle: 'A subtitle',
+    inputTextFieldHint: "Type a message...",
+    connectingText: "Waiting for server...",
+    profileAvatar: "https://img.icons8.com/flat_round/100/000000/chat.png",
+    hideWhenNotConnected: false,
+    defaultHighlightAnimation: `@keyframes default-botfront-blinker-animation {
+      from {
+      outline-style: none;
+      outline-color: red;
+    }
+    to {
+      outline-style: solid;
+      outline-color: red;
+    }
+  }`,
+    onSocketEvent: {
+      'bot_uttered': () => console.log('bot uttered'),
+    },
+    docViewer: false,
+    params: {
+      images: {
+        dims: {
+          width: 300,
+          height: 200
+        }
+      },
+      storage: "session"
+    }
+  })
+  WebChat.send('/main_options');
+  sessionStorage.clear();
+  
+</script>
+</body>
+
+</html>
